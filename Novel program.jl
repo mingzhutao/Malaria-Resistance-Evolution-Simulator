@@ -47,18 +47,20 @@ Simulates how *$(species)* DHFR genotypes evolve under different $(drug) concent
 
 # ╔═╡ b7467bbd-4b65-4f2b-852e-74d89faee276
 begin
-    data_path = if species == "P. falciparum" && drug == "Pyrimethamine"
-        raw"C:\malaria_model\Pf_pyrimethamine.csv"
+    data_path =
+        if species == "P. falciparum" && drug == "Pyrimethamine"
+            joinpath(@__DIR__, "Pf_pyrimethamine.csv")
 
-    elseif species == "P. falciparum" && drug == "Cycloguanil"
-        raw"C:\malaria_model\Pf_cycloguanil.csv"
+        elseif species == "P. falciparum" && drug == "Cycloguanil"
+            joinpath(@__DIR__, "Pf_cycloguanil.csv")
 
-    elseif species == "P. vivax" && drug == "Pyrimethamine"
-        raw"C:\malaria_model\Pv_pyrimethamine.csv"
+        elseif species == "P. vivax" && drug == "Pyrimethamine"
+            joinpath(@__DIR__, "Pv_pyrimethamine.csv")
 
-    else
-        error("No dataset available for this species-drug combination.")
-    end
+        else
+            error("No dataset available for this species-drug combination.")
+        end
+end
 
     df = CSV.read(
         data_path,
